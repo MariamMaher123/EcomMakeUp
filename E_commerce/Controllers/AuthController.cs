@@ -13,7 +13,7 @@ namespace EcomMakeUp.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        //nnnnn
+        //nnnnnokk
         public readonly IAuthServies _authServies;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IWebHostEnvironment _environment;
