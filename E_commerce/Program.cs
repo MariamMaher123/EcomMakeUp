@@ -20,7 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductSerives, ProductSerives>();
 builder.Services.AddScoped<IAuthServies, AuthServies>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.AddScoped<IOrderServies, OrdertServies>();
+builder.Services.AddScoped<ICardServies, CardServies>();
+
 
 // Add the database context and configure the connection string
 var connectionString = builder.Configuration.GetConnectionString("nnConnection");

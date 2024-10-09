@@ -11,6 +11,6 @@ namespace EcomMakeUp.Models
         public string Photo { get; set; }
         public List<Payment> payments { get; set; }
 
-        public List<Order> orders { get; set; }
+        public List<OrderProduct> orders { get; set; }
     }
 }
