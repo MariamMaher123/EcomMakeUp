@@ -10,6 +10,7 @@ namespace EcomMakeUp.Servies
        
         string DeleteProduct (string userId , int productId);
         Task<object> UpdateProduct(string userId, AddToCardDto card);
+        Task <decimal> GetAllPriceInCard(string UserId);
 
     }
 }
