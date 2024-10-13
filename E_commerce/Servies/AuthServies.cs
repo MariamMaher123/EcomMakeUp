@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace EcomMakeUp.Servies
 {
@@ -41,7 +42,20 @@ namespace EcomMakeUp.Servies
             Auth.Role = new List<string> { "User" };
             Auth.Token=new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
-
+            if(user.refreshTokens.Any(t=>t.IsActive))
+            {
+                var activeRefreshToken = user.refreshTokens.FirstOrDefault(t => t.IsActive);
+                Auth.RefreshToken = activeRefreshToken.Token;
+                Auth.RefreshTokenExpirat = activeRefreshToken.ExpiresOn;
+            }
+            else
+            {
+                var refreshToken = GenerateRefreshToken();
+                Auth.RefreshToken = refreshToken.Token;
+                Auth.RefreshTokenExpirat = refreshToken.ExpiresOn;
+                user.refreshTokens.Add(refreshToken);
+                await _userManager.UpdateAsync(user);
+            }
           
             return Auth;
         }
@@ -191,6 +205,23 @@ namespace EcomMakeUp.Servies
             }
 
             return new AuthModel { };
+        }
+
+
+        private RefreshToken GenerateRefreshToken()
+        {
+            var randomNumber= new byte[32];
+            using var generator = new RNGCryptoServiceProvider();
+              generator.GetBytes(randomNumber);
+
+            return new RefreshToken
+            {
+               Token = Convert.ToBase64String(randomNumber),
+               ExpiresOn = DateTime.UtcNow.AddDays(value:10),
+               CreatedOn = DateTime.UtcNow,
+
+            };
+        
         }
     }
 }
