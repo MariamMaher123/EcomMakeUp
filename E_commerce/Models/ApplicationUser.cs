@@ -12,5 +12,6 @@ namespace EcomMakeUp.Models
         public List<Payment> payments { get; set; }
 
         public List<OrderProduct> orders { get; set; }
+        public List<RefreshToken> refreshTokens { get; set; }
     }
 }

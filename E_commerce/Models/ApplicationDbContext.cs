@@ -16,6 +16,7 @@ namespace EcomMakeUp.Models
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<OrderProduct> Card { get; set; }
         public DbSet<Payment> Payments { get; set; }
+       // public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         // Override OnModelCreating if needed
       

@@ -45,6 +45,11 @@ namespace EcomMakeUp.Servies
 
         }
 
+        public Task<decimal> GetAllPriceInCard(string UserId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<object>> GetAllProduct(string UserId)
         {
             var prodList = await _dbcontext.Card

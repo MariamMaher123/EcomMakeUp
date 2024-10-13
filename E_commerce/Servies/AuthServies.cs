@@ -71,7 +71,7 @@ namespace EcomMakeUp.Servies
             return new AuthModel
             {
                 Email = user.Email,
-                Expireson = jwtToken.ValidTo,
+               // Expireson = jwtToken.ValidTo,
                 IsAuthenticated = true,
                 IdUser=user.Id,
                 Role = new List<string> { "User" },
