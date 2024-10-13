@@ -34,12 +34,17 @@ namespace EcomMakeUp.Servies
             if(user == null || !await _userManager.CheckPasswordAsync(user, UserData.Password))
             {
                 Auth.Message = "Error in Email or Password";
+                Auth.Error = true;
                 return Auth;
             }
             var jwtToken = await CreateToken(user);
             Auth.IsAuthenticated = true;
             Auth.Email = UserData.Email;
             Auth.Role = new List<string> { "User" };
+            Auth.BDay=user.BDay;
+            Auth.FullName=user.FullName;
+            Auth.Nationality = user.Nationality;
+
             Auth.Token=new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
             if(user.refreshTokens.Any(t=>t.IsActive))
